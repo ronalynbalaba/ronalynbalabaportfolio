@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ronalyn A. Balaba</title>
+  <style>
+    :root {
+      --primary: #2c3e50;
+      --secondary: #ecf0f1;
+      --bg: #f4f4f4;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      --transition: 0.6s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: #333;
+    }
+
+    /* ────────── Header & Navigation ────────── */
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 0 0.25rem;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    nav {
+      background: var(--secondary);
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+    nav a {
+      margin: 0 0.75rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #000;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    /* ────────── About Section ────────── */
+    .about p {
+      line-height: 1.6;
+    }
+    /* Expandable bio */
+    details.bio-toggle {
+      margin-top: 1rem;
+    }
+    details.bio-toggle summary {
+      cursor: pointer;
+      list-style: none;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    details.bio-toggle[open] summary::after {
+      content: "▲";
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
+    }
+    details.bio-toggle summary::after {
+      content: "▼";
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
+    }
+
+    /* ────────── Projects Section ────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      perspective: 1000px;
+    }
+    .project-inner {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      transform-style: preserve-3d;
+      transition: transform var(--transition);
+    }
+    .project-card:hover .project-inner,
+    .project-card:focus-within .project-inner {
+      transform: rotateY(180deg);
+    }
+    .project-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      text-align: center;
+    }
+    .project-back {
+      transform: rotateY(180deg);
+    }
+    .project-face h3 {
+      margin: 0.5rem 0;
+    }
+
+    /* ────────── Skills Section ────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      perspective: 800px;
+    }
+    .skill-inner {
+      position: relative;
+      height: 150px;
+      transform-style: preserve-3d;
+      transition: transform var(--transition);
+    }
+    .skill-card:hover .skill-inner,
+    .skill-card:focus-within .skill-inner {
+      transform: rotateY(180deg);
+    }
+    .skill-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      text-align: center;
+    }
+    .skill-face h4 {
+      margin: 0;
+    }
+    .skill-back {
+      transform: rotateY(180deg);
+      padding: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    /* ────────── Experience & Contact ────────── */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.6rem;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    .exp-item {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .exp-item::before {
+      content: "";
+      position: absolute;
+      left: -0.45rem;
+      top: 0.4rem;
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--secondary);
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* ────────── Footer ────────── */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--primary);
+      color: #fff;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ronalyn A. Balaba</h1>
+    <p>System Developer · Adobe Creative · Software Manager</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- ────────── About ────────── -->
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>I am a system developer with expertise in PeopleSoft, SQL, and Adobe applications. Known for strong analytical and communication skills, I excel in team coordination, troubleshooting, and customer support.</p>
+    <details class="bio-toggle">
+      <summary>Read my full story</summary>
+      <p>In my first role at Accenture, I was part of a project team that followed a well-defined process for system development. Initially, I was responsible for testing the system and actively participated in creating test cases and test scenarios. We executed all test cases thoroughly and documented the results meticulously, ensuring even the smallest details were captured. As I gained experience, I transitioned into the development team, where I contributed to system updates and bug fixes.
+We maintained regular communication with our clients to provide ongoing support and system maintenance, ensuring that issues were addressed promptly and the system remained stable and efficient.
+In my most recent role as a VA - Software Manager, I was responsible for managing the entire Online Application/Print Store system. This included building and customizing the Online Ordering System, editing and formatting printable files, uploading products, and providing continuous support based on client requests and business needs. I ensured the platform was up to date, user-friendly, and aligned with the operational requirements of our customers.
+</p>
+    </details>
+  </section>
+
+ <!-- ────────── Projects ────────── -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card" tabindex="0">
+        <div class="project-inner">
+          <div class="project-face project-front">
+            <h3>HR Application System</h3>
+            <p>Peoplesoft</p>
+          </div>
+          <div class="project-face project-back">
+            <p>Managing and maintaining the HR application System including the Employees data, Payroll and more.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Project 2 -->
+      <div class="project-card" tabindex="0">
+        <div class="project-inner">
+          <div class="project-face project-front">
+            <h3>Software Manager</h3>
+            <p>PrintNow</p>
+          </div>
+          <div class="project-face project-back">
+            <p>Customize the online ordering page with html and css</p>
+          </div>
+        </div>
+      </div>
+      <!-- Project 3 -->
+      <div class="project-card" tabindex="0">
+        <div class="project-inner">
+          <div class="project-face project-front">
+            <h3>Payroll System</h3>
+            <p>SQL & Application Engine</p>
+          </div>
+          <div class="project-face project-back">
+            <p>Payroll Sytem Development with detailed design and documented testing</p>
+          </div>
+        </div>
+      </div>
+      <!-- Project 4 -->
+      <div class="project-card" tabindex="0">
+        <div class="project-inner">
+          <div class="project-face project-front">
+            <h3>Customer Support</h3>
+            <p> </p>
+          </div>
+          <div class="project-face project-back">
+            <p>Responsible for assisting clients and end-users by addressing inquiries, resolving technical issues, and providing guidance on products or services. This includes troubleshooting problems, documenting solutions, and escalating unresolved issues when necessary. Strong communication, patience, and problem-solving skills are essential to ensure customer satisfaction and retention</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────── Skills ────────── -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <!-- Skill 1 -->
+      <div class="skill-card" tabindex="0">
+        <div class="skill-inner">
+          <div class="skill-face skill-front">
+            <h4>PeopleSoft</h4>
+          </div>
+          <div class="skill-face skill-back">
+            5+ years customizing HR & Finance modules, optimizing workflow, and integrating third‑party services.
+          </div>
+        </div>
+      </div>
+      <!-- Skill 2 -->
+      <div class="skill-card" tabindex="0">
+        <div class="skill-inner">
+          <div class="skill-face skill-front">
+            <h4>SQL</h4>
+          </div>
+          <div class="skill-face skill-back">
+            Advanced queries, performance tuning, stored procedures, and data modeling for enterprise systems.
+          </div>
+        </div>
+      </div>
+      <!-- Skill 3 -->
+      <div class="skill-card" tabindex="0">
+        <div class="skill-inner">
+          <div class="skill-face skill-front">
+            <h4>Adobe CC</h4>
+          </div>
+          <div class="skill-face skill-back">
+            Proficient in Illustrator, Photoshop, InDesign, and Acrobat for UI design & print materials.
+          </div>
+        </div>
+      </div>
+      <!-- Skill 4 -->
+      <div class="skill-card" tabindex="0">
+        <div class="skill-inner">
+          <div class="skill-face skill-front">
+            <h4>Troubleshooting</h4>
+          </div>
+          <div class="skill-face skill-back">
+            Systematic problem‑solving approach with strong analytical and debugging capabilities.
+          </div>
+        </div>
+      </div>
+      <!-- Skill 5 -->
+      <div class="skill-card" tabindex="0">
+        <div class="skill-inner">
+          <div class="skill-face skill-front">
+            <h4>Office & Sheets</h4>
+          </div>
+          <div class="skill-face skill-back">
+            Advanced Excel & Google Sheets (macros, pivot tables) plus Word & PowerPoint for documentation.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────── Experience ────────── -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="exp-item">
+        <h4> -VA Software Engineer – Mel Printing (2021‑Present)</h4>
+        <p>	-Managing the overall Online Ordering Application
+•	-Adding and updating products on the online platform
+•	-Updating and customizing the online page according to customer requirements
+•	-Providing customer and client support for orders and user accounts
+•	-Generating reports and managing online inventory
+•	-Customizing and formatting printable files using Adobe applications (Acrobat, Photoshop, InDesign)
+•	-Maintaining the online page using HTML and CSS
+</p>
+      </div>
+      <div class="exp-item">
+        <h4>-Software Engineer – Accenture (2006‑2009)</h4>
+        <p>Responsible for developing SQL scripts and maintaining HR Payroll systems. Tasks include testing applications through custom scenarios, performing data migration, and providing ongoing technical support via email and on-call assistance for global clients.</p>
+      </div>
+      <div class="exp-item">
+        <h4>-Technical Support – Government Service Insurance System (2005-2006)</h4>
+        <p>Responsible for the setup and installation of computer hardware and network equipment. This includes assembling and configuring computers, installing peripherals (printers, scanners, etc.), and setting up network devices such as routers, switches, and cabling. Ensures proper connectivity and functionality by testing installed equipment and troubleshooting any hardware or network issues. Collaborates with IT teams to maintain infrastructure and provides on-site support to end-users..</p>
+      </div>
+    </div>
+  </section>
+
+   <!-- ────────── Contact ────────── -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact">
+      <p>Address: 509 C. Namie St., Gracepark, Caloocan City, Philippines</p>
+      <p>WhatsApp: 09667003044</p>
+      <p>Email: <a href="mailto:ronalynbalaba18@gmail.com">ronalynbalaba18@gmail.com</a></p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Ronalyn Aton Balaba. All rights reserved.
+  </footer>
+</body>
+</html>
